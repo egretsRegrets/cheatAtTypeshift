@@ -1,3 +1,20 @@
 <h1>
   {{title}}
 </h1>
+<p>{{wordList[0]}}</p>
+<p>{{stringListLengths}}</p>
+
+<form>
+  <input id="letter_length" value="0" [(ngModel)]="userLetterLength" (blur)="setWordLength()" name="length of word">
+  <label for="#letter_length">number of letters in word</label>
+  <div *ngIf="checkWordDisambig()">
+    <div *ngFor="let letterPlace of wordDisambig; index as i">
+      <select value="letter {{i + 1}}">
+        <option *ngFor="let char of alphaArray" value="char[0]">{{char[0]}}</option>
+      </select>
+      <label>letters in letter position {{i + 1}}</label>
+    </div>
+  </div>
+</form>
+
+<p *ngIf="wordIndexRange">{{wordIndexRange | json}}</p>
