@@ -8,13 +8,16 @@
   <input id="letter_length" value="0" [(ngModel)]="userLetterLength" (blur)="setWordLength()" name="length of word">
   <label for="#letter_length">number of letters in word</label>
   <div *ngIf="checkWordDisambig()">
+    <p>{{wordDisambig | json}}</p>
     <div *ngFor="let letterPlace of wordDisambig; index as i">
-      <select value="letter {{i + 1}}">
-        <option *ngFor="let char of alphaArray" value="char[0]">{{char[0]}}</option>
+      <select *ngFor="let letter of letterPlace; index as j" name="slot {{i + 1}}, letter {{j + 1}}" [(ngModel)]="wordDisambig[i][j]"> <!--value is wrong-->
+        <option *ngFor="let char of alphaArray" value="{{char}}">{{char[0]}}</option>
       </select>
+      <i class="fa fa-plus" aria-hidden="true" (click)="addLetter(letterPlace)"></i>
       <label>letters in letter position {{i + 1}}</label>
     </div>
   </div>
+  <button>Get Possible Words</button>
 </form>
 
 <p *ngIf="wordIndexRange">{{wordIndexRange | json}}</p>
