@@ -16,8 +16,6 @@
       <i class="fa fa-plus" aria-hidden="true" (click)="addLetter(letterPlace)"></i>
       <label>letters in letter position {{i + 1}}</label>
     </div>
+    <button (click)="resolveWords()">Get Possible Words</button>
   </div>
-  <button>Get Possible Words</button>
 </form>
-
-<p *ngIf="wordIndexRange">{{wordIndexRange | json}}</p>

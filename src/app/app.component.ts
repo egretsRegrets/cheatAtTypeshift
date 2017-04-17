@@ -14,13 +14,14 @@ export class AppComponent implements OnInit {
   wordListLengths: {};
   stringListLengths: string;// for tests only
   userLetterLength: number;
+  resultWords: string[] = [];
 
-  wordIndexRange: {};
   wordDisambig = [];
 
   addLetter;
   getRangeByLength;
   setWordLength;
+  resolveWords;
   checkWordDisambig(){
     if (this.wordDisambig.length){
       return true;
@@ -50,7 +51,6 @@ export class AppComponent implements OnInit {
     };
 
     this.setWordLength = function(){
-      this.wordIndexRange = this.getRangeByLength(this.userLetterLength);
       this.wordDisambig = [];
       for (let i = 0; i < this.userLetterLength; i++) {
         this.wordDisambig.push(['a']);
@@ -61,5 +61,28 @@ export class AppComponent implements OnInit {
       letterPlace.push('a');
     };
 
+    this.resolveWords = function(){
+      const {rangeStart, rangeEnd} = this.getRangeByLength(this.userLetterLength);
+      for (let word = rangeStart; word < rangeEnd; word++) {
+        const curWord = this.wordList[word];
+        let wordAsArray: string[]= [];
+        for (let curUserSlotIndex = 0; curUserSlotIndex < this.wordDisambig.length; curUserSlotIndex++) {
+          const curUserSlot = this.wordDisambig[curUserSlotIndex];
+          const curListWordLetter = curWord[curUserSlotIndex];
+          for (let curUserLetterIndex = 0; curUserLetterIndex < curUserSlot.length; curUserLetterIndex++) {
+            const curUserLetter = curUserSlot[curUserLetterIndex];
+            if ( curUserLetter === curListWordLetter ) {
+              wordAsArray.push(curUserLetter);
+            }
+          }
+          if ( wordAsArray.length === curWord.length ){
+            this.resultWords.push(curWord);
+          }
+        }
+      }
+      console.log('solutions are', this.resultWords);
+    };
+    
   }
+
 }
