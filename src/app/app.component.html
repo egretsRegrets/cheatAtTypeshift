@@ -1,20 +1,12 @@
 <h1>{{title}}</h1>
-<form #userWordForm="ngForm">
-  <input id="letter_length" value="0" [(ngModel)]="userLetterLength" (blur)="setWordLength()" name="length of word">
-  <label for="#letter_length">number of letters in word</label>
-  <div *ngIf="checkWordDisambig()">
-    <pre>{{wordListSeed | json}}</pre>
-    <div *ngFor="let letterPlace of wordListSeed; index as i">
-      <input *ngFor="let letter of letterPlace; index as j"
-       name="slot {{i + 1}}, letter {{j + 1}}"
-       [(ngModel)]="wordListSeed[i][j]"
-       maxlength="1">
-      <i class="fa fa-plus" aria-hidden="true" (click)="addLetter(letterPlace)"></i>
-      <label>letters in letter position {{i + 1}}</label>
-    </div>
-    <button [disabled]="!userWordForm.valid" (click)="resolveWords()">Get Possible Words</button>
-  </div>
-</form>
-
-<app-letters>
+<input id="letter_length" value="0" [(ngModel)]="userLetterLength" (blur)="setWordLength()" name="length of word">
+<label for="#letter_length">number of letters in word</label>
+<pre>{{userLetterLength}}</pre>
+<hr>
+<app-letters [userLetterLength]="userLetterLength"
+              [wordListSeed]="wordListSeed"
+              (setWordLength)="setWordLength()"
+              (checkWordDisambig)="checkWordDisambig()"
+              (addLetter)="addLetter($event)"
+              (resolveWords)="resolveWords()">
 </app-letters>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-letters',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['letters.component.scss']
 })
 export class LettersComponent{
-  tempTitle = 'LettersComponent works';
+  @Input() userLetterLength: number;
+  @Input() wordListSeed;
+
+  @Output() setWordLength = new EventEmitter();
+  @Output() checkWordDisambig = new EventEmitter();
+  @Output() addLetter = new EventEmitter();
+  @Output() resolveWords = new EventEmitter();
 }

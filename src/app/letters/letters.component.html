@@ -1,1 +1,14 @@
-<h1>{{tempTitle}}</h1>
+<form #userWordForm="ngForm">
+  <div *ngIf="wordListSeed">
+    <pre>{{wordListSeed | json}}</pre>
+    <div *ngFor="let letterPlace of wordListSeed; index as i">
+      <input *ngFor="let letter of letterPlace; index as j"
+       name="slot {{i + 1}}, letter {{j + 1}}"
+       [(ngModel)]="wordListSeed[i][j]"
+       maxlength="1">
+      <i class="fa fa-plus" aria-hidden="true" (click)="addLetter.emit(letterPlace)"></i>
+      <label>letters in letter position {{i + 1}}</label>
+    </div>
+    <button [disabled]="!userWordForm.valid" (click)="resolveWords.emit()">Get Possible Words</button>
+  </div>
+</form>
