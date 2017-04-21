@@ -1,21 +1,22 @@
 <h1>
   {{title}}
 </h1>
-<p>{{wordList[0]}}</p>
-<p>{{stringListLengths}}</p>
+<pre>{{wordList[0]}}</pre>
+<pre>{{stringListLengths}}</pre>
 
-<form>
+<form #userWordForm="ngForm">
   <input id="letter_length" value="0" [(ngModel)]="userLetterLength" (blur)="setWordLength()" name="length of word">
   <label for="#letter_length">number of letters in word</label>
   <div *ngIf="checkWordDisambig()">
-    <p>{{wordDisambig | json}}</p>
+    <pre>{{wordDisambig | json}}</pre>
     <div *ngFor="let letterPlace of wordDisambig; index as i">
-      <select *ngFor="let letter of letterPlace; index as j" name="slot {{i + 1}}, letter {{j + 1}}" [(ngModel)]="wordDisambig[i][j]"> <!--value is wrong-->
-        <option *ngFor="let char of alphaArray" value="{{char}}">{{char[0]}}</option>
-      </select>
+      <input *ngFor="let letter of letterPlace; index as j"
+       name="slot {{i + 1}}, letter {{j + 1}}"
+       [(ngModel)]="wordDisambig[i][j]"
+       maxlength="1">
       <i class="fa fa-plus" aria-hidden="true" (click)="addLetter(letterPlace)"></i>
       <label>letters in letter position {{i + 1}}</label>
     </div>
-    <button (click)="resolveWords()">Get Possible Words</button>
+    <button [disabled]="!userWordForm.valid" (click)="resolveWords()">Get Possible Words</button>
   </div>
 </form>
