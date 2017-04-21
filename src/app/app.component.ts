@@ -9,10 +9,8 @@ import { WordsList } from './shared';
 })
 export class AppComponent implements OnInit {
   title = 'Cheat at Typeshift';
-  alphaArray: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
   wordList: string[];
   wordListLengths: {};
-  stringListLengths: string;// for tests only
   userLetterLength: number;
   resultWords: string[] = [];
 
@@ -35,7 +33,6 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.wordList = this.words.wordList.words;
     this.wordListLengths = this.words.wordList.lengths;
-    this.stringListLengths = JSON.stringify(this.words.wordList.lengths);// for tests only
 
     this.getRangeByLength = function(num){
       let rangeStart;
