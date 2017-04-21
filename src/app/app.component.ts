@@ -9,37 +9,37 @@ import { WordsList } from './shared';
 })
 export class AppComponent implements OnInit {
   title = 'Cheat at Typeshift';
-  wordList: string[];
-  wordListLengths: {};
+  masterWordList: string[];
+  masterWordListLengths: {};
   userLetterLength: number;
   resultWords: string[] = [];
 
-  wordDisambig = [];
+  wordListSeed = [];
 
   addLetter;
   getRangeByLength;
   setWordLength;
   resolveWords;
   checkWordDisambig(){
-    if (this.wordDisambig.length){
+    if (this.wordListSeed.length){
       return true;
-    }else{
+    }else {
       return false;
     }
   };
 
 
-  constructor( private words: WordsList ) {}
+  constructor( private allPossibleWords: WordsList ) {}
   ngOnInit() {
-    this.wordList = this.words.wordList.words;
-    this.wordListLengths = this.words.wordList.lengths;
+    this.masterWordList = this.allPossibleWords.wordList.words;
+    this.masterWordListLengths = this.allPossibleWords.wordList.lengths;
 
     this.getRangeByLength = function(num){
       let rangeStart;
       if (num > 2) {
-        rangeStart = this.wordListLengths[num.toString() - 1];
+        rangeStart = this.masterWordListLengths[num.toString() - 1];
       }
-      const rangeEnd = (this.wordListLengths[num.toString()]) - 1;
+      const rangeEnd = (this.masterWordListLengths[num.toString()]) - 1;
 
       return {
         'rangeStart': rangeStart || 0,
@@ -48,9 +48,9 @@ export class AppComponent implements OnInit {
     };
 
     this.setWordLength = function(){
-      this.wordDisambig = [];
+      this.wordListSeed = [];
       for (let i = 0; i < this.userLetterLength; i++) {
-        this.wordDisambig.push(['a']);
+        this.wordListSeed.push(['a']);
       }
     };
 
@@ -61,10 +61,10 @@ export class AppComponent implements OnInit {
     this.resolveWords = function(){
       const {rangeStart, rangeEnd} = this.getRangeByLength(this.userLetterLength);
       for (let word = rangeStart; word < rangeEnd; word++) {
-        const curWord = this.wordList[word];
-        let wordAsArray: string[]= [];
-        for (let curUserSlotIndex = 0; curUserSlotIndex < this.wordDisambig.length; curUserSlotIndex++) {
-          const curUserSlot = this.wordDisambig[curUserSlotIndex];
+        const curWord = this.masterWordList[word];
+        let wordAsArray: string[] = [];
+        for (let curUserSlotIndex = 0; curUserSlotIndex < this.wordListSeed.length; curUserSlotIndex++) {
+          const curUserSlot = this.wordListSeed[curUserSlotIndex];
           const curListWordLetter = curWord[curUserSlotIndex];
           for (let curUserLetterIndex = 0; curUserLetterIndex < curUserSlot.length; curUserLetterIndex++) {
             const curUserLetter = curUserSlot[curUserLetterIndex];
