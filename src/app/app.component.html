@@ -1,9 +1,4 @@
-<h1>
-  {{title}}
-</h1>
-<pre>{{wordList[0]}}</pre>
-<pre>{{stringListLengths}}</pre>
-
+<h1>{{title}}</h1>
 <form #userWordForm="ngForm">
   <input id="letter_length" value="0" [(ngModel)]="userLetterLength" (blur)="setWordLength()" name="length of word">
   <label for="#letter_length">number of letters in word</label>
@@ -20,3 +15,4 @@
     <button [disabled]="!userWordForm.valid" (click)="resolveWords()">Get Possible Words</button>
   </div>
 </form>
+<app-letters></app-letters>

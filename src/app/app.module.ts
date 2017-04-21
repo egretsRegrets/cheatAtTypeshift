@@ -6,10 +6,12 @@ import { HttpModule } from '@angular/http';
 import { WordsList } from './shared';
 
 import { AppComponent } from './app.component';
+import { LettersComponent } from './letters/letters.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LettersComponent
   ],
   imports: [
     BrowserModule,
