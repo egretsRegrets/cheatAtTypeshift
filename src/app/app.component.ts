@@ -14,22 +14,16 @@ export class AppComponent implements OnInit {
   userSlotLength: number;
   resultWords: string[] = [];
 
-  wordListSeed = [];
+  wordListSeed = [['a']];
 
   getRangeByLength;
   resolveWords;
 
-  addLetterSlot = function(){
-    console.log('addLetter fired');
+  addSlot = function(){
+    this.wordListSeed.push(['a']);
   };
   addLetter = function(letterPlace: string[]){
     letterPlace.push('a');
-  };
-  setWordLength = function(){
-    this.wordListSeed = [];
-    for (let i = 0; i < this.userSlotLength; i++) {
-      this.wordListSeed.push(['a']);
-    }
   };
   checkWordDisambig(){
     if (this.wordListSeed.length){

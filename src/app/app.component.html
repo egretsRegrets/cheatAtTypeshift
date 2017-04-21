@@ -1,12 +1,10 @@
 <h1>{{title}}</h1>
-<input id="letter_length" value="0" [(ngModel)]="userSlotLength" (blur)="setWordLength()" name="length of word">
-<label for="#letter_length">number of letters in word</label>
-<pre>{{userSlotLength}}</pre>
 <hr>
 <app-letters [userSlotLength]="userSlotLength"
               [wordListSeed]="wordListSeed"
               (setWordLength)="setWordLength()"
               (checkWordDisambig)="checkWordDisambig()"
               (addLetter)="addLetter($event)"
-              (resolveWords)="resolveWords()">
+              (resolveWords)="resolveWords()"
+              (addSlot)="addSlot()">
 </app-letters>
