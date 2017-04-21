@@ -16,10 +16,21 @@ export class AppComponent implements OnInit {
 
   wordListSeed = [];
 
-  addLetter;
   getRangeByLength;
-  setWordLength;
   resolveWords;
+
+  addLetterSlot = function(){
+    console.log('addLetter fired');
+  };
+  addLetter = function(letterPlace: string[]){
+    letterPlace.push('a');
+  };
+  setWordLength = function(){
+    this.wordListSeed = [];
+    for (let i = 0; i < this.userLetterLength; i++) {
+      this.wordListSeed.push(['a']);
+    }
+  };
   checkWordDisambig(){
     if (this.wordListSeed.length){
       return true;
@@ -45,17 +56,6 @@ export class AppComponent implements OnInit {
         'rangeStart': rangeStart || 0,
         'rangeEnd': rangeEnd
       };
-    };
-
-    this.setWordLength = function(){
-      this.wordListSeed = [];
-      for (let i = 0; i < this.userLetterLength; i++) {
-        this.wordListSeed.push(['a']);
-      }
-    };
-
-    this.addLetter = function(letterPlace: string[]){
-      letterPlace.push('a');
     };
 
     this.resolveWords = function(){
