@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['letters.component.scss']
 })
 export class LettersComponent{
-  @Input() userLetterLength: number;
+  @Input() userSlotLength: number;
   @Input() wordListSeed;
 
   @Output() setWordLength = new EventEmitter();

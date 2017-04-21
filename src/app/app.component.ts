@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   title = 'Cheat at Typeshift';
   masterWordList: string[];
   masterWordListLengths: {};
-  userLetterLength: number;
+  userSlotLength: number;
   resultWords: string[] = [];
 
   wordListSeed = [];
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   };
   setWordLength = function(){
     this.wordListSeed = [];
-    for (let i = 0; i < this.userLetterLength; i++) {
+    for (let i = 0; i < this.userSlotLength; i++) {
       this.wordListSeed.push(['a']);
     }
   };
@@ -59,7 +59,7 @@ export class AppComponent implements OnInit {
     };
 
     this.resolveWords = function(){
-      const {rangeStart, rangeEnd} = this.getRangeByLength(this.userLetterLength);
+      const {rangeStart, rangeEnd} = this.getRangeByLength(this.userSlotLength);
       for (let word = rangeStart; word < rangeEnd; word++) {
         const curWord = this.masterWordList[word];
         let wordAsArray: string[] = [];
