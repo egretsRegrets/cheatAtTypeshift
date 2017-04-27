@@ -1,7 +1,6 @@
 <h1>{{title}}</h1>
 <hr>
-<app-letters [userSlotLength]="userSlotLength"
-              [wordListSeed]="wordListSeed"
+<app-letters  [wordListSeed]="wordListSeed"
               (setWordLength)="setWordLength()"
               (checkWordDisambig)="checkWordDisambig()"
               (addLetter)="addLetter($event)"

@@ -11,7 +11,6 @@ export class AppComponent implements OnInit {
   title = 'Cheat at Typeshift';
   masterWordList: string[];
   masterWordListLengths: {};
-  userSlotLength: number;
   resultWords: string[] = [];
 
   wordListSeed = [['a']];
@@ -53,26 +52,52 @@ export class AppComponent implements OnInit {
     };
 
     this.resolveWords = function(){
-      const {rangeStart, rangeEnd} = this.getRangeByLength(this.userSlotLength);
-      for (let word = rangeStart; word < rangeEnd; word++) {
-        const curWord = this.masterWordList[word];
-        let wordAsArray: string[] = [];
-        for (let curUserSlotIndex = 0; curUserSlotIndex < this.wordListSeed.length; curUserSlotIndex++) {
-          const curUserSlot = this.wordListSeed[curUserSlotIndex];
-          const curListWordLetter = curWord[curUserSlotIndex];
-          for (let curUserLetterIndex = 0; curUserLetterIndex < curUserSlot.length; curUserLetterIndex++) {
-            const curUserLetter = curUserSlot[curUserLetterIndex];
-            if ( curUserLetter === curListWordLetter ) {
-              wordAsArray.push(curUserLetter);
-            }
-          }
-          if ( wordAsArray.length === curWord.length ){
-            this.resultWords.push(curWord);
-          }
-        }
-      }
+      const {rangeStart, rangeEnd} = this.getRangeByLength(this.wordListSeed.length);
+      let narrowWordList: string[] = this.masterWordList.slice(rangeStart, rangeEnd);
+      this.resultWords = mergeSort(narrowWordList, this.wordListSeed);
+
       console.log('solutions are', this.resultWords);
-    };
+    }
+
+    function mergeSort(array: string[], userLetters: string[]): string[] {
+      if (array.length <= 1 ){
+          return array;
+      }
+      const middle = Math.floor(array.length / 2);
+      const leftSide = array.slice(0, middle);
+      const rightSide = array.slice(middle);
+      return merge(mergeSort(leftSide, userLetters), mergeSort(rightSide, userLetters), userLetters);
+    }
+
+    function merge (leftSide: string[], rightSide: string[], userLetters): string[]{
+      let mergedArray: string[] = [];
+      const largerArrayLength = leftSide.length > rightSide.length ? leftSide.length : rightSide.length;
+      for (let i  = 0; i < largerArrayLength; i++) {
+          if(leftSide[i] && compareWords(leftSide[i], userLetters)) {
+              mergedArray.push(leftSide[i]);
+          }
+          if(rightSide[i] && compareWords(rightSide[i], userLetters)) {
+              mergedArray.push(rightSide[i]);
+          }
+      }
+      return mergedArray;
+    }
+
+    function compareWords (collectionWord, userLetters) {
+      if (collectionWord.length <= 0){
+          console.log("returning from compareWords with true"); // for tests
+          return true;
+      }
+      const userLetterSlot = userLetters[0];
+      for( let letterIndex = 0; letterIndex <= userLetterSlot.length; letterIndex++){
+          if (letterIndex === userLetterSlot.length){
+              return false;
+          }
+          if (collectionWord[0] === userLetterSlot[letterIndex]){  
+            return compareWords(collectionWord.slice(1), userLetters.slice(1));
+          }
+      }
+    }
     
   }
 
