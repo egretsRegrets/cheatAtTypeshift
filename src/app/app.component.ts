@@ -17,8 +17,7 @@ export class AppComponent implements OnInit {
 
   getRangeByLength;
   resolveWords;
-  mergeSort;
-  merge;
+  linearSearch;
   compareWords;
 
   addSlot = function(){
@@ -56,34 +55,20 @@ export class AppComponent implements OnInit {
 
     this.resolveWords = function(){
         const {rangeStart, rangeEnd} = this.getRangeByLength(this.wordListSeed.length);
-        let narrowWordList: string[] = this.masterWordList.slice(rangeStart, rangeEnd);
-        this.resultWords = this.mergeSort(narrowWordList);
-
+        const narrowWordList: string[] = this.masterWordList.slice(rangeStart, rangeEnd);
+        this.resultWords = this.linearSearch(narrowWordList);
         console.log('solutions are', this.resultWords);
-    }
-    this.mergeSort = function(array: string[]): string[] {
-        if (array.length <= 1 ){
-            return array;
-        }
-        const middle = Math.floor(array.length / 2);
-        const leftSide = array.slice(0, middle);
-        const rightSide = array.slice(middle);
-        return this.merge(this.mergeSort(leftSide), this.mergeSort(rightSide));
-    }
+    };
 
-    this.merge = function(leftSide: string[], rightSide: string[]): string[]{
-        let mergedArray: string[] = [];
-        const largerArrayLength = leftSide.length > rightSide.length ? leftSide.length : rightSide.length;
-        for (let i  = 0; i < largerArrayLength; i++) {
-            if(leftSide[i] && this.compareWords(leftSide[i])) {
-                mergedArray.push(leftSide[i]);
-            }
-            if(rightSide[i] && this.compareWords(rightSide[i])) {
-                mergedArray.push(rightSide[i]);
-            }
+    this.linearSearch = function(wordList: string[]): string[]{
+        let parsedWordList: string[] = [];
+        for (let i  = 0; i < wordList.length; i++) {
+          if(this.compareWords(wordList[i])) {
+             parsedWordList.push(wordList[i]);
+          }
         }
-        return mergedArray;
-    }
+        return parsedWordList;
+    };
 
     this.compareWords = function(collectionWord, userLetters = this.wordListSeed) {
         if (collectionWord.length <= 0){
@@ -95,12 +80,12 @@ export class AppComponent implements OnInit {
             if (letterIndex === userLetterSlot.length){
                 return false;
             }
-            if (collectionWord[0] === userLetterSlot[letterIndex]){  
-            return this.compareWords(collectionWord.slice(1), userLetters.slice(1));
+            if (collectionWord[0] === userLetterSlot[letterIndex]){
+              return this.compareWords(collectionWord.slice(1), userLetters.slice(1));
             }
         }
-    }
-    
+    };
+
   }
 
 }
