@@ -1,22 +1,36 @@
 <form #userWordForm="ngForm">
   <div *ngIf="wordListSeed">
     <pre>{{wordListSeed | json}}</pre>
-    <div *ngFor="let letterPlace of wordListSeed; index as i">
-      <div *ngFor="let letter of letterPlace; index as j">
+    <div class="userLetterSlot" *ngFor="let letterPlace of wordListSeed; index as i">
+      <div class="userLetter" *ngFor="let letter of letterPlace; index as j">
         <input name="slot {{i + 1}}, letter {{j + 1}}"
         [(ngModel)]="wordListSeed[i][j]"
         maxlength="1">
-        <div>
-          <i class="fa fa-plus" aria-hidden="true" (click)="addLetter.emit(letterPlace)"></i>
-          <span>add letter</span>
+        <div class="letterControls">
+          <div (click)="addLetter.emit(letterPlace);$event.stopPropagation()">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>add letter</span>
+          </div>
+          <div (click)="removeLetter.emit($event);$event.stopPropagation()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            <span>remove letter</span>
+          </div>
         </div>
       </div>
       <label>letters in letter position {{i + 1}}</label>
-      <div>
-          <i class="fa fa-plus" aria-hidden="true" (click)="addSlot.emit()"></i>
+      <div class="slotControls">
+        <div (click)="addSlot.emit();$event.stopPropagation()">
+          <i class="fa fa-plus" aria-hidden="true"></i>
           <span>add letter slot</span>
+        </div>
+        <div (click)="removeSlot.emit($event)">
+          <i class="fa fa-times" aria-hidden="true"></i>
+          <span>remove letter slot</span>  
+        </div> 
       </div>
     </div>
+    <div>
     <button [disabled]="!userWordForm.valid" (click)="resolveWords.emit()">Get Possible Words</button>
+    </div>
   </div>
 </form>

@@ -20,11 +20,38 @@ export class AppComponent implements OnInit {
   linearSearch;
   compareWords;
 
+  getSlotNumber = function(event){
+    let slotNumber;
+    const slots = document.getElementsByClassName('userLetterSlot');
+    const slot = event.target.closest('div.userLetterSlot');
+    for (let i = 0; i <= slots.length; i++){
+      if (slots[i] === slot){
+        slotNumber = i;
+      }
+    }
+    return slotNumber;
+  };
   addSlot = function(){
     this.wordListSeed.push(['a']);
   };
   addLetter = function(letterPlace: string[]){
     letterPlace.push('a');
+  };
+  removeSlot = function (event){
+    const slotNumber = this.getSlotNumber(event);
+    this.wordListSeed.splice(slotNumber, 1);
+  };
+  removeLetter = function (event){
+    const slotNumber = this.getSlotNumber(event);
+    const letters = document.getElementsByClassName('userLetter');
+    const letter = event.target.closest('div.userLetter');
+    let letterNumber;
+    for (let i = 0; i <= letters.length; i++){
+      if (letters[i] === letter){
+        letterNumber = i;
+      }
+    }
+    this.wordListSeed[slotNumber].splice(letterNumber, 1);
   };
 
   constructor( private allPossibleWords: WordsList ) {}

@@ -12,5 +12,7 @@ export class LettersComponent{
   @Output() checkWordDisambig = new EventEmitter();
   @Output() addSlot = new EventEmitter();
   @Output() addLetter = new EventEmitter();
+  @Output() removeLetter = new EventEmitter();
+  @Output() removeSlot = new EventEmitter();
   @Output() resolveWords = new EventEmitter();
 }

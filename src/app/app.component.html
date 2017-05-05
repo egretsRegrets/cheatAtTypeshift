@@ -3,8 +3,10 @@
 <app-letters  [wordListSeed]="wordListSeed"
               (setWordLength)="setWordLength()"
               (addLetter)="addLetter($event)"
-              (resolveWords)="resolveWords()"
-              (addSlot)="addSlot()">
+              (addSlot)="addSlot()"
+              (removeLetter)="removeLetter($event)"
+              (removeSlot)="removeSlot($event)"
+              (resolveWords)="resolveWords()">
 </app-letters>
 <app-results [words]="resultWords">
 </app-results>
