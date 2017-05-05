@@ -26,14 +26,6 @@ export class AppComponent implements OnInit {
   addLetter = function(letterPlace: string[]){
     letterPlace.push('a');
   };
-  checkWordDisambig(){
-    if (this.wordListSeed.length){
-      return true;
-    }else {
-      return false;
-    }
-  };
-
 
   constructor( private allPossibleWords: WordsList ) {}
   ngOnInit() {
