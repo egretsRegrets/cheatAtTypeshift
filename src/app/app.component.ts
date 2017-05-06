@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   getRangeByLength;
   resolveWords;
-  arrayifyResults;
+  resultsToCharArrays;
   linearSearch;
   compareWords;
 
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
       };
     };
 
-    this.arrayifyResults = function(words){
+    this.resultsToCharArrays = function(words){
       const arrayifiedWords = words.map(word => {
         let charArray: string[] = [];
         for (let letter of word){
@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
         const {rangeStart, rangeEnd} = this.getRangeByLength(this.wordListSeed.length);
         const narrowWordList: string[] = this.masterWordList.slice(rangeStart, rangeEnd);
         const resultWordsStrings = this.linearSearch(narrowWordList);
-        this.resultWords = this.arrayifyResults(resultWordsStrings);
+        this.resultWords = this.resultsToCharArrays(resultWordsStrings);
     };
 
     this.linearSearch = function(wordList: string[]): string[]{
