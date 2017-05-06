@@ -11,7 +11,7 @@
             <i class="fa fa-plus" aria-hidden="true"></i>
             <span>add letter</span>
           </div>
-          <div (click)="removeLetter.emit($event);$event.stopPropagation()">
+          <div (click)="removeLetter.emit(letterPlace, letter);$event.stopPropagation()">
             <i class="fa fa-times" aria-hidden="true"></i>
             <span>remove letter</span>
           </div>
@@ -23,7 +23,7 @@
           <i class="fa fa-plus" aria-hidden="true"></i>
           <span>add letter slot</span>
         </div>
-        <div (click)="removeSlot.emit($event)">
+        <div (click)="removeSlot.emit(letterPlace)">
           <i class="fa fa-times" aria-hidden="true"></i>
           <span>remove letter slot</span>  
         </div> 
