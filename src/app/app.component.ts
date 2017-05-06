@@ -11,12 +11,13 @@ export class AppComponent implements OnInit {
   title = 'Cheat at Typeshift';
   masterWordList: string[];
   masterWordListLengths: {};
-  resultWords: string[] = [];
+  resultWords: string[][] = [];
 
   wordListSeed = [['a']];
 
   getRangeByLength;
   resolveWords;
+  arrayifyResults;
   linearSearch;
   compareWords;
 
@@ -55,11 +56,22 @@ export class AppComponent implements OnInit {
       };
     };
 
+    this.arrayifyResults = function(words){
+      const arrayifiedWords = words.map(word => {
+        let charArray: string[] = [];
+        for (let letter of word){
+          charArray.push(letter);
+        }
+        return charArray;
+      });
+      return arrayifiedWords;
+    };
+
     this.resolveWords = function(){
         const {rangeStart, rangeEnd} = this.getRangeByLength(this.wordListSeed.length);
         const narrowWordList: string[] = this.masterWordList.slice(rangeStart, rangeEnd);
-        this.resultWords = this.linearSearch(narrowWordList);
-        console.log('solutions are', this.resultWords);
+        const resultWordsStrings = this.linearSearch(narrowWordList);
+        this.resultWords = this.arrayifyResults(resultWordsStrings);
     };
 
     this.linearSearch = function(wordList: string[]): string[]{
@@ -74,7 +86,6 @@ export class AppComponent implements OnInit {
 
     this.compareWords = function(collectionWord, userLetters = this.wordListSeed) {
         if (collectionWord.length <= 0){
-            console.log("returning from compareWords with true"); // for tests
             return true;
         }
         const userLetterSlot = userLetters[0];
