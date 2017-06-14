@@ -1,9 +1,13 @@
 <div class="resultWordsContainer">
-  <div *ngFor="let word of words" class="resultWord">
+  <div *ngFor="let word of words"
+  class="resultWord"
+  [ngClass]="{'resultWord--stricken': strickenWords.includes(word.join(''))}">
     <h1>
-      <span *ngFor="let letter of word">{{letter}}</span>
+      <span *ngFor="let letter of word; index as letterNum"
+      class="resultWord__letter"
+      [ngClass]="{'resultWord__letter--used': strickenLetters.length === word.length && strickenLetters[letterNum].includes(letter)}">{{letter}}</span>
     </h1>
-    <div class="toggle__word toggle__word--unused" (click)="strikeWord.emit($event)">
+    <div class="toggle__word toggle__word--unused" (click)="alterUserWords.emit($event)">
       <i class="fa fa-check" aria-hidden="true"></i>
       <i class="fa fa-times" aria-hidden="true"></i>
     </div>

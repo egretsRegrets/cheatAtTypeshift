@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
   masterWordList: string[];
   masterWordListLengths: {};
   resultWords: string[][] = [];
+  strickenWords: string[] = [];
+  strickenLetters: string[][] = [];
 
   // real use word seed list:
   // wordListSeed = [['a']];
@@ -54,12 +56,65 @@ export class AppComponent implements OnInit {
       letterPlace.splice(letterPlace.indexOf(letter), 1);
     }
   };
-
-  strikeWord = (event) => {
+  alterUserWords = (event) => {
+    const toggle = event.currentTarget;
     const wordParentEl = event.currentTarget.parentElement.getElementsByTagName('h1');
     const wordArray = [].slice.call(wordParentEl[0].children).map((span) => span.innerHTML);
-    console.log(wordArray);
-  }
+    const word = wordArray.join('');
+    
+    if(toggle.classList.contains('toggle__word--unused')){
+      toggle.classList.remove('toggle__word--unused');
+      toggle.classList.add('toggle__word--used');
+      this.strickenWords.push(word);
+      if(!this.strickenLetters.length){
+        for(let i = 0; i < wordArray.length; i++){
+          this.strickenLetters.push([]);
+        }
+      }
+      for (let i = 0; i < wordArray.length; i++){
+        this.strickenLetters[i].push(wordArray[i]);
+      }
+    }else{
+      toggle.classList.remove('toggle__word--used');
+      toggle.classList.add('toggle__word--unused');
+      this.strickenWords.splice(this.strickenWords.indexOf(word), 1);
+      for (let i = 0; i < wordArray.length; i++){
+        this.strickenLetters[i].splice(
+          this.strickenLetters[i].indexOf(wordArray[i]),
+        1);
+      }
+    }
+    this.scoreResultWords();
+  };
+  scoreResultWords = () => {
+    let scoredWords: {}[] = [];
+    if (this.strickenWords.length){
+      for (let wordArray of this.resultWords){
+        let score = 0;
+        for (let letter = 0; letter < wordArray.length; letter++){
+          if ( this.strickenLetters[letter].includes(wordArray[letter]) ) {
+            score += 1;
+          }
+        }
+        scoredWords.push({wordArray, score});
+      }
+    }
+    this.orderWords(scoredWords);
+  };
+  orderWords = (scoredWords) => {
+    let orderedScores: {wordArray, score}[];
+    let orderedWords: string[][] = [];
+    if(scoredWords.length){
+      orderedScores = scoredWords.sort(function(a, b) {
+        return a.score - b.score;
+      });
+      for (let i = 0; i < this.resultWords.length; i++) {
+        const thisWord = orderedScores[i].wordArray;
+        orderedWords.push(thisWord);
+      }
+      this.resultWords = orderedWords;
+    }
+  };
 
   constructor( private allPossibleWords: WordsList ) {}
   ngOnInit() {

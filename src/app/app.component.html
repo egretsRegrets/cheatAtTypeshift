@@ -9,5 +9,7 @@
               (resolveWords)="resolveWords()">
 </app-letters>
 <app-results  [words]="resultWords"
-              (strikeWord)="strikeWord($event)">
+              [strickenWords]="strickenWords"
+              [strickenLetters]="strickenLetters"
+              (alterUserWords)="alterUserWords($event)">
 </app-results>

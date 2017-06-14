@@ -7,7 +7,9 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ResultsComponent implements Input {
   @Input() words;
+  @Input() strickenWords;
+  @Input() strickenLetters;
 
-  @Output() strikeWord = new EventEmitter();
+  @Output() alterUserWords = new EventEmitter();
 
 }

@@ -5,10 +5,20 @@
         h1{
             margin: 0;
             display: inline-block;
+            span.resultWord__letter{
+                &.resultWord__letter--used{
+                    color: #66c7c1;
+                }
+            }
         }
         .toggle__word{
             display: inline-block;
             &.toggle__word--unused{
+                .fa-check{
+                    display: none;
+                }
+            }
+            &.toggle__word--used{
                 .fa-times{
                     display: none;
                 }
