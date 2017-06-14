@@ -8,5 +8,6 @@
               (removeSlot)="removeSlot($event)"
               (resolveWords)="resolveWords()">
 </app-letters>
-<app-results [words]="resultWords">
+<app-results  [words]="resultWords"
+              (strikeWord)="strikeWord($event)">
 </app-results>

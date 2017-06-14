@@ -13,7 +13,24 @@ export class AppComponent implements OnInit {
   masterWordListLengths: {};
   resultWords: string[][] = [];
 
-  wordListSeed = [['a']];
+  // real use word seed list:
+  // wordListSeed = [['a']];
+  // simple examp value wordlist: 
+  // wordListSeed = [['c','b','m'],['a'],['t','d']];
+
+  // complex examp value wordlist, few results: 
+  // wordListSeed = [['b','s','i'],['i','m'],['o','t','b','g'],['p','c','i','w'],['i','s','b','o'],['y','g','m','e']];
+
+  // complex examp value wordlist, more results: 
+  wordListSeed = [
+    ['g','e','b','s'],
+    ['d','n','a','r','e'],
+    ['c','a','g','i','r'],
+    ['r','u','b','v'],
+    ['l','e','a','i'],
+    ['d','e','f','c','n'],
+    ['d','s','o','g','y']
+  ];
 
   getRangeByLength;
   resolveWords;
@@ -37,6 +54,12 @@ export class AppComponent implements OnInit {
       letterPlace.splice(letterPlace.indexOf(letter), 1);
     }
   };
+
+  strikeWord = (event) => {
+    const wordParentEl = event.currentTarget.parentElement.getElementsByTagName('h1');
+    const wordArray = [].slice.call(wordParentEl[0].children).map((span) => span.innerHTML);
+    console.log(wordArray);
+  }
 
   constructor( private allPossibleWords: WordsList ) {}
   ngOnInit() {

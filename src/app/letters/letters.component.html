@@ -1,7 +1,7 @@
 <form #userWordForm="ngForm">
-  <div *ngIf="wordListSeed">
-    <pre>{{wordListSeed | json}}</pre>
+  <div *ngIf="wordListSeed" id="letterSlotContainer">
     <div class="userLetterSlot" *ngFor="let letterPlace of wordListSeed; index as i">
+      <label>letters in letter position {{i + 1}}</label>
       <div class="userLetter" *ngFor="let letter of letterPlace; index as j">
         <input name="slot {{i + 1}}, letter {{j + 1}}"
         [(ngModel)]="wordListSeed[i][j]"
@@ -17,7 +17,6 @@
           </div>
         </div>
       </div>
-      <label>letters in letter position {{i + 1}}</label>
       <div class="slotControls">
         <div (click)="addSlot.emit();$event.stopPropagation()">
           <i class="fa fa-plus" aria-hidden="true"></i>
@@ -29,8 +28,8 @@
         </div> 
       </div>
     </div>
-    <div>
+  </div>
+  <div>
     <button [disabled]="!userWordForm.valid" (click)="resolveWords.emit()">Get Possible Words</button>
-    </div>
   </div>
 </form>

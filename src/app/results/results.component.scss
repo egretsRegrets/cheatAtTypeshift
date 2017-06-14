@@ -1,0 +1,18 @@
+.resultWordsContainer{
+    .resultWord{
+        padding: 5px 10px;
+        display: inline-block;
+        h1{
+            margin: 0;
+            display: inline-block;
+        }
+        .toggle__word{
+            display: inline-block;
+            &.toggle__word--unused{
+                .fa-times{
+                    display: none;
+                }
+            }
+        }
+    }
+}

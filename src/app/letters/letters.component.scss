@@ -1,0 +1,12 @@
+#letterSlotContainer{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+    & .userLetterSlot {
+        flex-grow: 1;
+        max-width: 250px;
+        & .userLetter{
+            margin-bottom: 15px;
+        }
+    }
+}
