@@ -14,6 +14,11 @@ body{
     margin: 0;
 }
 
+#logoContainer {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 #logo{
     display: block;
     width: 80%;

@@ -1,4 +1,9 @@
 <form #userWordForm="ngForm" id="letterInterface">
+  <div class="btn-container btn-container__resolveWords">
+    <button id="btn__resolveWords"
+            [disabled]="!userWordForm.valid"
+            (click)="resolveWords.emit()">Get Solutions</button>
+  </div>
   <div *ngIf="wordListSeed" id="letterSlotContainer">
     <div class="triangele-container___hor">
       <!--
@@ -29,10 +34,5 @@
             id="triangle-left"
             (click)="removeSlot.emit()"></div>
       </div>      
-  </div>
-  <div>
-    <button id="btn__resolveWords"
-            [disabled]="!userWordForm.valid"
-            (click)="resolveWords.emit()">Get Solutions</button>
   </div>
 </form>

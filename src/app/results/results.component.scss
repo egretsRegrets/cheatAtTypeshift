@@ -1,7 +1,11 @@
 .resultWordsContainer{
-    max-width: 625px;
-    margin: 25px auto;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
     .resultWord{
+        @media screen and (max-width: 700px){
+            margin-bottom: .5%;
+        }
         padding: 5px 10px;
         display: inline-block;
         margin: 5px 15px;
@@ -9,6 +13,9 @@
             margin: 0;
             display: inline-block;
             .resultWord__letter{
+                @media screen and (max-width: 800px){
+                    padding: 0 1.25vw;
+                }
                 transition: background-color .4s;
                 background-color: #C98B5D;
                 display: inline-block;
@@ -19,6 +26,9 @@
                     background-color: #66c7c1;
                 }
                 span{
+                    @media screen and (max-width: 800px){
+                        font-size: 6vw;
+                    }
                     font-size: 2em;
                     color: #fff;
                     text-transform: uppercase;
@@ -28,6 +38,9 @@
         .toggle__word{
             display: inline-block;
             .fa{
+                @media screen and (max-width: 800px){
+                    font-size: 4vw;    
+                }
                 font-size: 2em;
                 transform: translate(0, 4px);
                 margin-left: 5px;

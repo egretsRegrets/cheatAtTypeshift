@@ -1,9 +1,9 @@
-$inputFontSize: 700px / 8;
+$inputFontSize: 800px / 8;
 $inputFontSize___mobile: 100vw / 8;
 
 @mixin inputFontSize{
     font-size: $inputFontSize;
-    @media screen and (max-width: 700px){
+    @media screen and (max-width: 800px){
         font-size: $inputFontSize___mobile;
     }
 }
@@ -23,8 +23,8 @@ $inputFontSize___mobile: 100vw / 8;
     margin: 0 auto;
     #letterSlotContainer{
         display: flex;
-        margin-bottom: 20px;
         justify-content: center;
+        clear: right;
         .triangele-container___hor{
             @include letterSlotWidth();
             height: -webkit-calc(14% - 9px);
@@ -90,7 +90,6 @@ $inputFontSize___mobile: 100vw / 8;
             }
             .userLetter{
                 margin: 1.5px 1.5px 0px 0px;
-                height: 12.5%;
                 &:nth-child(2){
                     margin-top: 0;
                 }
@@ -120,11 +119,21 @@ $inputFontSize___mobile: 100vw / 8;
         }
     }
 }
-#btn__resolveWords{
+
+.btn-container__resolveWords{
     float: right;
-    color: #000;
-    border: none;
-    background: #fff;
-    font-size: 3em;
-    padding: .2em .45em;
+    margin-right: 2%;
+    @media screen and (max-width: 800px){
+        margin-right: 11.5%;
+    }
+    #btn__resolveWords{
+        @media screen and (max-width: 800px){
+            font-size: 5vw;
+        }
+        color: #000;
+        border: none;
+        background: #fff;
+        font-size: 3em;
+        padding: .2em .45em;
+    }
 }
