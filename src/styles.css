@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face{
+    font-family: 'RoadGeek2005-engschrift';
+    src: url('./assets/fonts/roadgeek-2005-engschrift.ttf') format('truetype');
+}
+
+*{
+    color: #fff;
+    font-family: 'RoadGeek2005-engschrift';
+}
+
+body{
+    background: #1A2025;
+    font-size: 62.5%;
+    margin: 0;
+}
+
+#logo{
+    display: block;
+    width: 80%;
+    max-width: 550px;
+    margin: auto;
+}

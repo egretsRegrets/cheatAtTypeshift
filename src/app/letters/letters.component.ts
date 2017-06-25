@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class LettersComponent{
   @Input() wordListSeed;
+  @Input() strickenLetters;
 
   @Output() setWordLength = new EventEmitter();
   @Output() checkWordDisambig = new EventEmitter();

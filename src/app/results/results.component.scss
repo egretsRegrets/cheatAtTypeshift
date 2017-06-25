@@ -1,18 +1,37 @@
 .resultWordsContainer{
+    max-width: 625px;
+    margin: 25px auto;
     .resultWord{
         padding: 5px 10px;
         display: inline-block;
+        margin: 5px 15px;
         h1{
             margin: 0;
             display: inline-block;
-            span.resultWord__letter{
+            .resultWord__letter{
+                transition: background-color .4s;
+                background-color: #C98B5D;
+                display: inline-block;
+                margin: 0 1px;
+                padding: 0 11.5px;
                 &.resultWord__letter--used{
-                    color: #66c7c1;
+                    transition: background-color .4s;
+                    background-color: #66c7c1;
+                }
+                span{
+                    font-size: 2em;
+                    color: #fff;
+                    text-transform: uppercase;
                 }
             }
         }
         .toggle__word{
             display: inline-block;
+            .fa{
+                font-size: 2em;
+                transform: translate(0, 4px);
+                margin-left: 5px;
+            }
             &.toggle__word--unused{
                 .fa-check{
                     display: none;

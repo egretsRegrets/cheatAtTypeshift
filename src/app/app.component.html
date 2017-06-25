@@ -1,11 +1,13 @@
-<h1>{{title}}</h1>
-<hr>
+<header id="logoContainer">
+    <img src="../assets/images/altered_logo.png" alt="Cheat at Typeshift" id="logo">
+</header>
 <app-letters  [wordListSeed]="wordListSeed"
+              [strickenLetters]="strickenLetters"
               (setWordLength)="setWordLength()"
               (addLetter)="addLetter($event)"
               (addSlot)="addSlot()"
-              (removeLetter)="removeLetter($event, $event)"
-              (removeSlot)="removeSlot($event)"
+              (removeLetter)="removeLetter($event)"
+              (removeSlot)="removeSlot()"
               (resolveWords)="resolveWords()">
 </app-letters>
 <app-results  [words]="resultWords"

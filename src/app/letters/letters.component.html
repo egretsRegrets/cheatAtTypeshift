@@ -1,35 +1,29 @@
-<form #userWordForm="ngForm">
+<form #userWordForm="ngForm" id="letterInterface">
   <div *ngIf="wordListSeed" id="letterSlotContainer">
+    <div id="triangle-right" (click)="addSlot.emit()"></div>
     <div class="userLetterSlot" *ngFor="let letterPlace of wordListSeed; index as i">
-      <label>letters in letter position {{i + 1}}</label>
-      <div class="userLetter" *ngFor="let letter of letterPlace; index as j">
+      <div [ngClass]="{'letterControls--revealed': letterPlace.length >= 2,
+        'letterControls--hidden': letterPlace.length < 2}" 
+            id="triangle-down" 
+            (click)="removeLetter.emit(letterPlace)"></div>
+      <div class="userLetter"
+          *ngFor="let letter of letterPlace; index as j"
+          [ngClass]="{'userLetter--used': strickenLetters.length && strickenLetters[i].includes(letter),
+          'userLetter--unused': strickenLetters.length && !strickenLetters[i].includes(letter)}">
         <input name="slot {{i + 1}}, letter {{j + 1}}"
         [(ngModel)]="wordListSeed[i][j]"
         maxlength="1">
-        <div class="letterControls">
-          <div (click)="addLetter.emit(letterPlace);$event.stopPropagation()">
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            <span>add letter</span>
-          </div>
-          <div (click)="removeLetter.emit(letterPlace, letter);$event.stopPropagation()">
-            <i class="fa fa-times" aria-hidden="true"></i>
-            <span>remove letter</span>
-          </div>
-        </div>
       </div>
-      <div class="slotControls">
-        <div (click)="addSlot.emit();$event.stopPropagation()">
-          <i class="fa fa-plus" aria-hidden="true"></i>
-          <span>add letter slot</span>
-        </div>
-        <div (click)="removeSlot.emit(letterPlace)">
-          <i class="fa fa-times" aria-hidden="true"></i>
-          <span>remove letter slot</span>  
-        </div> 
-      </div>
+      <div id="triangle-up" (click)="addLetter.emit(letterPlace)"></div>
     </div>
+    <div [ngClass]="{'letterControls--revealed': wordListSeed.length >= 2,
+      'letterControls--hidden': wordListSeed.length < 2}"
+          id="triangle-left"
+          (click)="removeSlot.emit()"></div>
   </div>
   <div>
-    <button [disabled]="!userWordForm.valid" (click)="resolveWords.emit()">Get Possible Words</button>
+    <button id="btn__resolveWords"
+            [disabled]="!userWordForm.valid"
+            (click)="resolveWords.emit()">Get Solutions</button>
   </div>
 </form>

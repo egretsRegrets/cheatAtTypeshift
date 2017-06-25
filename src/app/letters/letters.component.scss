@@ -1,12 +1,108 @@
-#letterSlotContainer{
-    display: flex;
-    margin-bottom: 20px;
-    justify-content: center;
-    & .userLetterSlot {
-        flex-grow: 1;
-        max-width: 250px;
-        & .userLetter{
-            margin-bottom: 15px;
+#letterInterface{
+    width: 625px;
+    overflow: auto;
+    margin: 0 auto;
+    #letterSlotContainer{
+        display: flex;
+        margin-bottom: 20px;
+        justify-content: center;
+        #triangle-right {
+            width: 0;
+            height: 0;
+            border-top: 25px solid transparent;
+            border-left: 23px solid #272F35;
+            border-bottom: 25px solid transparent;
+            position: relative;
+            top: 50%;
+            transform: translateY(145%);
+            margin-right: 15px;
+        }
+        #triangle-left {
+            width: 0;
+            height: 0;
+            border-top: 25px solid transparent;
+            border-right: 23px solid #272F35;
+            border-bottom: 25px solid transparent;
+            position: relative;
+            top: 50%;
+            transform: translateY(145%);
+            margin-left: 15px;
+            opacity: 0;
+            &.letterControls--revealed{
+                transition: opacity .4s;
+                opacity: 1;
+            }
+            &.letterControls--hidden{
+                transition: opacity .4s;
+                opacity: 0;
+            }
+        }
+        .userLetterSlot {
+            width: 85px;
+            #triangle-down {
+                width: 0;
+                height: 0;
+                border-left: 25px solid transparent;
+                border-right: 25px solid transparent;
+                border-top: 23px solid #272F35;
+                margin: 15px auto;
+                opacity: 0;
+                &.letterControls--revealed{
+                    transition: opacity .4s;
+                    opacity: 1;
+                }
+                &.letterControls--hidden{
+                    transition: opacity .4s;
+                    opacity: 0;
+                }
+            }
+            #triangle-up {
+                width: 0;
+                height: 0;
+                border-left: 25px solid transparent;
+                border-right: 25px solid transparent;
+                border-bottom: 23px solid #272F35;
+                margin: 15px auto;
+            }
+            &:last-of-type{
+                .userLetter{
+                    margin-right: 0;
+                }
+            }
+            .userLetter{
+                margin: 1.5px 1.5px 0px 0px;
+                height: 88px;
+                &.userLetter--used{
+                    input{
+                        transition: background-color .4s;
+                        background-color: #66c7c1;
+                    }
+                }&.userLetter--unused{
+                    input{
+                        transition: background-color .4s;
+                        background-color: #C98B5D;
+                    }
+                }
+                input{
+                    background-color: #C98B5D;
+                    border: none;
+                    text-transform: uppercase;
+                    text-align: center;
+                    max-width: 100%;
+                    width: 85px;
+                    height: 88px;
+                    padding: 0;
+                    font-size: 10em;
+                }
+            }
         }
     }
+}
+#btn__resolveWords{
+    float: right;
+    color: #000;
+    border: none;
+    background: #fff;
+    font-size: 3em;
+    padding: .2em .45em;
 }

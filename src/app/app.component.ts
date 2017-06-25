@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
   // wordListSeed = [['b','s','i'],['i','m'],['o','t','b','g'],['p','c','i','w'],['i','s','b','o'],['y','g','m','e']];
 
   // complex examp value wordlist, more results: 
+  /*
   wordListSeed = [
     ['g','e','b','s'],
     ['d','n','a','r','e'],
@@ -33,6 +34,18 @@ export class AppComponent implements OnInit {
     ['d','e','f','c','n'],
     ['d','s','o','g','y']
   ];
+  */
+  // examp from TS site
+  
+  
+  wordListSeed = [
+    ['s','w','g'],
+    ['r','p','o'],
+    ['e','r'],
+    ['a','l','d'],
+    ['t','l','s']
+  ];
+  
 
   getRangeByLength;
   resolveWords;
@@ -46,20 +59,24 @@ export class AppComponent implements OnInit {
   addLetter = function(letterPlace: string[]){
     letterPlace.push('a');
   };
-  removeSlot = function (letterPlace: string[]){
+  removeSlot = function (){
     if (this.wordListSeed.length > 1){
-      this.wordListSeed.splice(this.wordListSeed.indexOf(letterPlace), 1);
+      this.wordListSeed.splice(
+        this.wordListSeed.indexOf(this.wordListSeed.length - 1),
+      1);
     }
   };
-  removeLetter = function (letterPlace: string[], letter: string){
-    if(letterPlace.length > 1){
-      letterPlace.splice(letterPlace.indexOf(letter), 1);
+  removeLetter = function (letterPlace){
+    if(letterPlace.length > 1) {
+      letterPlace.splice(
+        letterPlace.indexOf(letterPlace.length - 1),
+      1);
     }
   };
   alterUserWords = (event) => {
     const toggle = event.currentTarget;
     const wordParentEl = event.currentTarget.parentElement.getElementsByTagName('h1');
-    const wordArray = [].slice.call(wordParentEl[0].children).map((span) => span.innerHTML);
+    const wordArray = [].slice.call(wordParentEl[0].children).map((div) => div.querySelector('span').innerHTML);
     const word = wordArray.join('');
     
     if(toggle.classList.contains('toggle__word--unused')){
