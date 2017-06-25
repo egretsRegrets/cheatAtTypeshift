@@ -54,7 +54,9 @@ export class AppComponent implements OnInit {
   compareWords;
 
   addSlot = function(){
-    this.wordListSeed.push(['a']);
+    if(this.wordListSeed.length < 7){
+      this.wordListSeed.push(['a']);
+    }
   };
   addLetter = function(letterPlace: string[]){
     letterPlace.push('a');
