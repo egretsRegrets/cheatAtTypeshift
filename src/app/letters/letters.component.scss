@@ -1,51 +1,70 @@
+$inputFontSize: 700px / 8;
+$inputFontSize___mobile: 100vw / 8;
+
+@mixin inputFontSize{
+    font-size: $inputFontSize;
+    @media screen and (max-width: 700px){
+        font-size: $inputFontSize___mobile;
+    }
+}
+
+@mixin letterSlotWidth{
+        width: -webkit-calc(14% - 9px);
+        width: -moz-calc(14% - 9px);
+        width: calc(14% - 9px);
+}
+
 #letterInterface{
-    width: 625px;
+    @media screen and (max-width: 800px){
+        width: 100%;
+    }
+    width: 800px;
     overflow: auto;
     margin: 0 auto;
     #letterSlotContainer{
         display: flex;
         margin-bottom: 20px;
         justify-content: center;
-        #triangle-right {
-            width: 0;
-            height: 0;
-            border-top: 25px solid transparent;
-            border-left: 23px solid #272F35;
-            border-bottom: 25px solid transparent;
-            position: relative;
-            top: 50%;
-            transform: translateY(145%);
-            margin-right: 15px;
-        }
-        #triangle-left {
-            width: 0;
-            height: 0;
-            border-top: 25px solid transparent;
-            border-right: 23px solid #272F35;
-            border-bottom: 25px solid transparent;
-            position: relative;
-            top: 50%;
-            transform: translateY(145%);
-            margin-left: 15px;
-            opacity: 0;
-            &.letterControls--revealed{
-                transition: opacity .4s;
-                opacity: 1;
+        .triangele-container___hor{
+            @include letterSlotWidth();
+            height: -webkit-calc(14% - 9px);
+            height: -moz-calc(14% - 9px);
+            height: calc(14% - 9px);
+            #triangle-right {   
+                width: 30%;
+                margin: 135% 20% 0 50%;
+                padding: calc(31%) 0;
+                background-color: #272F35;
+                -webkit-clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
+                clip-path: polygon(0% 0%, 0% 100%, 100% 50%);
             }
-            &.letterControls--hidden{
-                transition: opacity .4s;
+            #triangle-left {
+                width: 30%;
+                margin: 135% 50% 0 20%;
+                padding: calc(31%) 0;
+                background: #272F35;
+                -webkit-clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+                clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
                 opacity: 0;
+                &.letterControls--revealed{
+                    transition: opacity .4s;
+                    opacity: 1;
+                }
+                &.letterControls--hidden{
+                    transition: opacity .4s;
+                    opacity: 0;
+                }
             }
         }
         .userLetterSlot {
-            width: 85px;
+            @include letterSlotWidth();
             #triangle-down {
-                width: 0;
-                height: 0;
-                border-left: 25px solid transparent;
-                border-right: 25px solid transparent;
-                border-top: 23px solid #272F35;
-                margin: 15px auto;
+                width: 62%;
+                margin: 60% auto 20%;
+                padding: calc(15%) 0;
+                background: #272F35;
+                -webkit-clip-path: polygon(0 0, 50% 100%, 100% 0%);
+                clip-path: polygon(0 0, 50% 100%, 100% 0%);
                 opacity: 0;
                 &.letterControls--revealed{
                     transition: opacity .4s;
@@ -57,12 +76,12 @@
                 }
             }
             #triangle-up {
-                width: 0;
-                height: 0;
-                border-left: 25px solid transparent;
-                border-right: 25px solid transparent;
-                border-bottom: 23px solid #272F35;
-                margin: 15px auto;
+                width: 62%;
+                margin: 20% auto;
+                padding: calc(15%) 0;
+                background: #272F35;
+                -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
             }
             &:last-of-type{
                 .userLetter{
@@ -71,7 +90,10 @@
             }
             .userLetter{
                 margin: 1.5px 1.5px 0px 0px;
-                height: 88px;
+                height: 12.5%;
+                &:nth-child(2){
+                    margin-top: 0;
+                }
                 &.userLetter--used{
                     input{
                         transition: background-color .4s;
@@ -84,15 +106,15 @@
                     }
                 }
                 input{
+                    @include inputFontSize();
                     background-color: #C98B5D;
                     border: none;
                     text-transform: uppercase;
                     text-align: center;
                     max-width: 100%;
-                    width: 85px;
-                    height: 88px;
+                    width: 100%;
                     padding: 0;
-                    font-size: 10em;
+                    height: 100%;
                 }
             }
         }

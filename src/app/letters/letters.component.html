@@ -1,6 +1,13 @@
 <form #userWordForm="ngForm" id="letterInterface">
   <div *ngIf="wordListSeed" id="letterSlotContainer">
-    <div id="triangle-right" (click)="addSlot.emit()"></div>
+    <div class="triangele-container___hor">
+      <!--
+      <svg>
+        <polygon id="triangle-right" (click)="addSlot.emit()" points="0 0, 0 100, 100 50" />
+      </svg>
+      -->
+      <div id="triangle-right" (click)="addSlot.emit()"></div>
+    </div>
     <div class="userLetterSlot" *ngFor="let letterPlace of wordListSeed; index as i">
       <div [ngClass]="{'letterControls--revealed': letterPlace.length >= 2,
         'letterControls--hidden': letterPlace.length < 2}" 
@@ -16,10 +23,12 @@
       </div>
       <div id="triangle-up" (click)="addLetter.emit(letterPlace)"></div>
     </div>
-    <div [ngClass]="{'letterControls--revealed': wordListSeed.length >= 2,
-      'letterControls--hidden': wordListSeed.length < 2}"
-          id="triangle-left"
-          (click)="removeSlot.emit()"></div>
+    <div class="triangele-container___hor">
+      <div [ngClass]="{'letterControls--revealed': wordListSeed.length >= 2,
+        'letterControls--hidden': wordListSeed.length < 2}"
+            id="triangle-left"
+            (click)="removeSlot.emit()"></div>
+      </div>      
   </div>
   <div>
     <button id="btn__resolveWords"

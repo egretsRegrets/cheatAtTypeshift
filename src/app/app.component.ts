@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   // wordListSeed = [['b','s','i'],['i','m'],['o','t','b','g'],['p','c','i','w'],['i','s','b','o'],['y','g','m','e']];
 
   // complex examp value wordlist, more results: 
-  /*
+  
   wordListSeed = [
     ['g','e','b','s'],
     ['d','n','a','r','e'],
@@ -34,10 +34,10 @@ export class AppComponent implements OnInit {
     ['d','e','f','c','n'],
     ['d','s','o','g','y']
   ];
-  */
+  
   // examp from TS site
   
-  
+  /*
   wordListSeed = [
     ['s','w','g'],
     ['r','p','o'],
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
     ['a','l','d'],
     ['t','l','s']
   ];
-  
+  */
 
   getRangeByLength;
   resolveWords;
