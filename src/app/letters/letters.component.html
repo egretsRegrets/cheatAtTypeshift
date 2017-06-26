@@ -11,26 +11,30 @@
         <polygon id="triangle-right" (click)="addSlot.emit()" points="0 0, 0 100, 100 50" />
       </svg>
       -->
-      <div id="triangle-right" (click)="addSlot.emit()"></div>
+      <div class="letterSlot-control" id="triangle-right" (click)="addSlot.emit()"></div>
     </div>
     <div class="userLetterSlot" *ngFor="let letterPlace of wordListSeed; index as i">
       <div [ngClass]="{'letterControls--revealed': letterPlace.length >= 2,
-        'letterControls--hidden': letterPlace.length < 2}" 
+        'letterControls--hidden': letterPlace.length < 2}"
+            class="letterSlot-control" 
             id="triangle-down" 
             (click)="removeLetter.emit(letterPlace)"></div>
       <div class="userLetter"
-          *ngFor="let letter of letterPlace; index as j"
+          *ngFor="let letter of letterPlace; index as j; trackBy: trackByFn"
           [ngClass]="{'userLetter--used': strickenLetters.length && strickenLetters[i].includes(letter),
           'userLetter--unused': strickenLetters.length && !strickenLetters[i].includes(letter)}">
+
         <input name="slot {{i + 1}}, letter {{j + 1}}"
         [(ngModel)]="wordListSeed[i][j]"
         maxlength="1">
+
       </div>
-      <div id="triangle-up" (click)="addLetter.emit(letterPlace)"></div>
+      <div class="letterSlot-control" id="triangle-up" (click)="addLetter.emit(letterPlace)"></div>
     </div>
     <div class="triangele-container___hor">
       <div [ngClass]="{'letterControls--revealed': wordListSeed.length >= 2,
         'letterControls--hidden': wordListSeed.length < 2}"
+            class="letterSlot-control"
             id="triangle-left"
             (click)="removeSlot.emit()"></div>
       </div>      

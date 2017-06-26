@@ -25,6 +25,9 @@ $inputFontSize___mobile: 100vw / 8;
         display: flex;
         justify-content: center;
         clear: right;
+        .letterSlot-control:hover{
+            cursor: pointer;
+        }
         .triangele-container___hor{
             @include letterSlotWidth();
             height: -webkit-calc(14% - 9px);

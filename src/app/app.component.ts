@@ -58,7 +58,9 @@ export class AppComponent implements OnInit {
   addSlot = function(){
     if(this.wordListSeed.length < 7){
       this.wordListSeed.push(['a']);
+      return;
     }
+    return;
   };
   addLetter = function(letterPlace: string[]){
     letterPlace.push('a');

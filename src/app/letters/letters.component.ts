@@ -5,7 +5,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: 'letters.component.html',
   styleUrls: ['letters.component.scss']
 })
-export class LettersComponent{
+export class LettersComponent {
+
   @Input() wordListSeed;
   @Input() strickenLetters;
 
@@ -16,4 +17,9 @@ export class LettersComponent{
   @Output() removeLetter = new EventEmitter();
   @Output() removeSlot = new EventEmitter();
   @Output() resolveWords = new EventEmitter();
+
+  trackByFn = function(index: number, item: string){
+    return index;
+  };
+
 }
