@@ -32,23 +32,23 @@
 npm-debug.log
 testem.log
 /typings
-protractor.conf.js
-karma.conf.js
+/protractor.conf.js
+/karma.conf.js
 
 # e2e
 /e2e/*.js
 /e2e/*.map
-e2e
+/e2e
 
 # System Files
 .DS_Store
 Thumbs.db
 
 # angular cli
-.angular-cli.json
+/.angular-cli.json
 
 # linters
-tslint.json
+/tslint.json
 
 # TypeScript
-tsconfig.json
+/tsconfig.json
