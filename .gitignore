@@ -15,9 +15,9 @@
 .c9/
 *.launch
 .settings/
-*.sublime-workspace
 
 # IDE - VSCode
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -32,11 +32,23 @@
 npm-debug.log
 testem.log
 /typings
+protractor.conf.js
+karma.conf.js
 
 # e2e
 /e2e/*.js
 /e2e/*.map
+e2e
 
 # System Files
 .DS_Store
 Thumbs.db
+
+# angular cli
+.angular-cli.json
+
+# linters
+tslint.json
+
+# TypeScript
+tsconfig.json
