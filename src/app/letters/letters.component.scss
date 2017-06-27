@@ -25,6 +25,7 @@ $inputFontSize___mobile: 100vw / 8;
         display: flex;
         justify-content: center;
         clear: right;
+        transform: translate(0, -35px);
         .letterSlot-control:hover{
             cursor: pointer;
         }
