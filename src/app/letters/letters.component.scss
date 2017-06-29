@@ -139,5 +139,8 @@ $inputFontSize___mobile: 100vw / 8;
         background: #fff;
         font-size: 3em;
         padding: .2em .45em;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
     }
 }

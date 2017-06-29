@@ -5,10 +5,13 @@ import { WordsList } from './shared';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css', './app.component.scss' ]
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'Cheat at Typeshift';
+
+  showInfo: boolean;
+
   masterWordList: string[];
   masterWordListLengths: {};
   resultWords: string[][] = [];
@@ -56,7 +59,12 @@ export class AppComponent implements OnInit {
   compareWords;
 
   addSlot = function(){
-    if(this.wordListSeed.length < 7){
+    if (this.wordListSeed.length < 7) {
+      if (this.strickenWords.length) {
+        this.strickenWords = [];
+        this.strickenLetters = [];
+        this.resultWords = [];
+      }
       this.wordListSeed.push(['a']);
       return;
     }

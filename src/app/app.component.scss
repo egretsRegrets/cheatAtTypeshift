@@ -1,0 +1,19 @@
+#info-toggle{
+    width: 100%;
+    text-align: right;
+    margin-bottom: 2%;
+    box-sizing: border-box;
+    .fa-info{
+        font-size: 3em;
+        cursor: pointer;
+        position: fixed;
+        top: 2%;
+        right: 3%;
+    }
+    .fa-info:hover{
+        &::before{
+            transition: color .4s;
+            color: #66c7c1;
+        }
+    }
+}
