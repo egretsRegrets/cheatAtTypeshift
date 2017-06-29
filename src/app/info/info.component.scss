@@ -1,0 +1,38 @@
+#showInfo_container{
+    background: #e61570;
+    padding: 3% 3% 2.5%;
+    text-align: left;
+    &::after {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        transform: skewY(-1.5deg);
+        transform-origin: 90%;
+        background: #e61570;
+        z-index: -1;
+    }
+    ul{
+        margin: 0 0 20px 0;
+        padding: 0;
+        li {
+            font-size: 2em;
+            list-style: none;
+            cursor: pointer;
+            display: inline-block;
+            &:first-of-type{
+                margin-right: 2%;
+            }
+        }
+    }
+}
+
+.info-container{
+    p {
+        font-size: 2em;
+        margin: 10px 0;
+    }
+}

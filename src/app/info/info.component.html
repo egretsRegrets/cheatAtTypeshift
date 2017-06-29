@@ -1,0 +1,21 @@
+<div id="showInfo_container" *ngIf="showInfo">
+  <nav class="menu menu__info">
+    <ul>
+      <li class="menu-item menu-item__about" (click)="infoMenuSelect($event)">About</li>
+      <li class="menu-item menu-item__how-to" (click)="infoMenuSelect($event)">How-to</li>
+    </ul>
+  </nav>  
+  <div class="info-container info-container__about" *ngIf="!infoShowHow">
+    <p><a href="http://playtypeshift.com/">Typeshift</a> is an excelent anagram/crossword/wordsearch style puzzle game for ios created by <a href="http://www.stfj.net/">Zach Gage</a>. You can and should <a href="https://itunes.apple.com/us/app/typeshift/id1084762137?mt=8&ign-mpt=uo%3D4">download the game here</a>.</p>
+    <p>Cheat at Typeshift is a project by Sam Gardner, you can <a href="https://github.com/mercantilism/cheatAtTypeshift">fork the Angular app here</a> or be <a href="">LinkedIn frineds with Sam here</a>.</p>
+    <p>Cheat at Typeshift checks for solution words against the npm package <a href="https://www.npmjs.com/package/word-list-json">word-list-json</a> by <a href="https://github.com/calvinmetcalf">Calvin Metcalf</a>.</p>
+  </div>
+  <div class="info-container info-container__how-to" *ngIf="infoShowHow">
+    <p>To produce the possible solutions for a puzzle, recreate the letter-space columns and letters of the puzzle</p>
+    <p>You can either add the letters you have left in a puzzle you've been working on, or recreate a full puzzle.</p>
+    <p>Click or tap the triangle on the left of the starting 'a' to add a letter-space column.</p>
+    <p>Click or tap the triangle below a column to add another possible letter in that column.</p>
+    <p>Once your letters are in, click the 'Get Solutions' button.</p>
+    <p>You can click/tap the x icon by a solution word to check off the letters used and reorder the solutions for efficiency</p>
+  </div>  
+</div>
