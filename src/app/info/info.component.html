@@ -1,4 +1,4 @@
-<div id="showInfo_container" *ngIf="showInfo">
+<div id="showInfo_container" [ngClass]="{'showInfo': showInfo}">
   <nav class="menu menu__info">
     <ul>
       <li class="menu-item menu-item__about" (click)="infoMenuSelect($event)">About</li>

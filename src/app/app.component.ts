@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   title = 'Cheat at Typeshift';
 
   showInfo: boolean;
+  hideInfo: boolean;
 
   masterWordList: string[];
   masterWordListLengths: {};
@@ -58,6 +59,17 @@ export class AppComponent implements OnInit {
   linearSearch;
   compareWords;
 
+  toggleShowInfo = () => {
+    if(!this.showInfo) {
+      this.showInfo = true;
+      if (this.hideInfo){
+        this.hideInfo = false;
+      }
+    } else {
+      this.showInfo = false;
+      this.hideInfo = true;
+    }
+  };
   addSlot = function(){
     if (this.wordListSeed.length < 7) {
       if (this.strickenWords.length) {

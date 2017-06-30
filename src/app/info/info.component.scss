@@ -2,6 +2,16 @@
     background: #e61570;
     padding: 3% 3% 2.5%;
     text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: transform .4s;
+    transform: translate(0, -120%);
+    &.showInfo{
+        transition: transform .4s;
+        transform: translate(0, 0);
+    }
     &::after {
         display: block;
         content: '';

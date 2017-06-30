@@ -5,20 +5,26 @@
             (click)="resolveWords.emit()">Get Solutions</button>
   </div>
   <div *ngIf="wordListSeed" id="letterSlotContainer">
-    <div class="triangele-container___hor">
-      <!--
-      <svg>
-        <polygon id="triangle-right" (click)="addSlot.emit()" points="0 0, 0 100, 100 50" />
-      </svg>
-      -->
-      <div class="letterSlot-control" id="triangle-right" (click)="addSlot.emit()"></div>
+    <div class="triangle-container triangle-container___hor">
+      <div class="svg-container svg-container__right">
+        <svg viewBox="0 0 50 100" preserveAspectRatio="none">
+          <polygon id="triangle-right" (click)="addSlot.emit()" points="0 0, 0 100, 53 50" />
+        </svg>
+      </div>
     </div>
     <div class="userLetterSlot" *ngFor="let letterPlace of wordListSeed; index as i">
-      <div [ngClass]="{'letterControls--revealed': letterPlace.length >= 2,
-        'letterControls--hidden': letterPlace.length < 2}"
-            class="letterSlot-control" 
-            id="triangle-down" 
-            (click)="removeLetter.emit(letterPlace)"></div>
+      <div class="triangle-container triangle-container___vert">
+        <div class="svg-container svg-container__down">
+          <svg viewBox="0 -22 100 100" preserveAspectRatio="none">
+            <polygon
+              [ngClass]="{'letterControls--revealed': letterPlace.length >= 2, 'letterControls--hidden': letterPlace.length < 2}"
+              class="letterSlot-control"
+              id="triangle-down"
+              (click)="removeLetter.emit(letterPlace)"
+              points="0 0, 50 50, 100 0" />
+          </svg>
+        </div> 
+      </div>
       <div class="userLetter"
           *ngFor="let letter of letterPlace; index as j; trackBy: trackByFn"
           [ngClass]="{'userLetter--used': strickenLetters.length && strickenLetters[i].includes(letter),
@@ -29,14 +35,28 @@
         maxlength="1">
 
       </div>
-      <div class="letterSlot-control" id="triangle-up" (click)="addLetter.emit(letterPlace)"></div>
+      <div class="triangle-container triangle-container___vert">
+        <div class="svg-container svg-container__up">
+          <svg viewBox="0 22 100 100" preserveAspectRatio="none">
+            <polygon
+              class="letterSlot-control"
+              id="triangle-up"
+              (click)="addLetter.emit(letterPlace)"
+              points="50 53, 0 100, 100 100"/>
+          </svg>
+        </div> 
+      </div>
     </div>
-    <div class="triangele-container___hor">
-      <div [ngClass]="{'letterControls--revealed': wordListSeed.length >= 2,
-        'letterControls--hidden': wordListSeed.length < 2}"
+    <div class="triangle-container triangle-container___hor">
+      <div class="svg-container svg-container__left">
+        <svg viewBox="55 0 50 100" preserveAspectRatio="none">
+          <polygon [ngClass]="{'letterControls--revealed': wordListSeed.length >= 2, 'letterControls--hidden': wordListSeed.length < 2}"
             class="letterSlot-control"
             id="triangle-left"
-            (click)="removeSlot.emit()"></div>
-      </div>      
+            (click)="removeSlot.emit()"
+            points="100 0, 53 50, 100 100" />
+        </svg>
+      </div> 
+    </div> 
   </div>
 </form>

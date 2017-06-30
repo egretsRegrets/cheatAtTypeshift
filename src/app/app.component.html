@@ -1,9 +1,16 @@
 <header>
-    <div id="info-toggle">
+    <div id="info-parent">
         <app-info [showInfo]="showInfo"></app-info>
-        <i class="fa fa-info"
-            aria-hidden="true"
-            (click)=" !showInfo ? showInfo = true : showInfo = false"></i>
+        <div id="info-toggle">
+            <div class="hover_container" (click)="toggleShowInfo()">
+                <div class="two-line-ham_container" [ngClass]="{'menuClose': showInfo, 'menuOpen': hideInfo}">
+                    <div class="two-line-ham two-line-ham_1"></div>
+                    <div class="two-line-ham two-line-ham_2"></div>
+                </div>
+                <i class="fa fa-info"
+                    aria-hidden="true"></i>
+            </div>
+        </div>
     </div>
     <div id="logoContainer">
         <img src="../assets/images/alt-typeshift-logo.png" alt="Cheat at Typeshift" id="logo">
