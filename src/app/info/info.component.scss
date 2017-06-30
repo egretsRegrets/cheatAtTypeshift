@@ -19,12 +19,29 @@
         margin: 0 0 20px 0;
         padding: 0;
         li {
-            font-size: 2em;
+            font-size: 2.5em;
+            letter-spacing: .025em;
             list-style: none;
             cursor: pointer;
             display: inline-block;
+            overflow: hidden;
             &:first-of-type{
                 margin-right: 2%;
+            }
+            &::after{
+                display: block;
+                content:'';
+                width: 86%;
+                height: .085em;
+                background: #fff;
+                transition: transform .3s;
+                transform: translate(-45%, 0);
+            }
+            &:hover{
+                &::after{
+                    transition: transform .35s;
+                    transform: translate(0, 0);
+                }    
             }
         }
     }
