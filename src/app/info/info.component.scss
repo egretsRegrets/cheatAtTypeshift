@@ -64,10 +64,24 @@
     p {
         @media screen and (max-width: 980px){
             font-size: 1.75em;
+            margin: 1.2em 0;
         }
         font-size: 2em;
         margin: 10px 0;
         letter-spacing: .03em;
         line-height: 1.5em;
+    }
+}
+
+@media screen and (max-width:  750px){
+    #showInfo_container{
+        padding: 10% 8% 0;
+        bottom: 0;
+        background: rgba(230, 21, 112, .9);
+        transition: transform .4s;
+        transform: translate(-100%, 0);
+        &::after{
+            display: none;
+        }
     }
 }
