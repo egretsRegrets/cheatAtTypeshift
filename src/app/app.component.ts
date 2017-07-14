@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   strickenLetters: string[][] = [];
 
   // real use word seed list:
-  wordListSeed = [['a']];
+  // wordListSeed = [['a']];
   // simple examp value wordlist: 
   // wordListSeed = [['c','b','m'],['a'],['t','d']];
 
@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
   // complex examp value wordlist, more results: 
   
-  /*
+  
   wordListSeed = [
     ['g','e','b','s'],
     ['d','n','a','r','e'],
@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     ['d','e','f','c','n'],
     ['d','s','o','g','y']
   ];
-  */
+  
   
   // examp from TS site
   
@@ -58,6 +58,144 @@ export class AppComponent implements OnInit {
   resultsToCharArrays;
   linearSearch;
   compareWords;
+
+  scrollIt = (destination: HTMLElement, duration: number = 500, easing: string = 'linear', documentHeight, callback) => {
+
+    // easing types for testing purposes
+    const easings = {
+      linear(t) {
+        return t;
+      },
+      easeInQuad(t) {
+        return t * t;
+      },
+      easeOutQuad(t) {
+        return t * (2 - t);
+      },
+      easeInOutQuad(t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      },
+      easeInCubic(t) {
+        return t * t * t;
+      },
+      easeOutCubic(t) {
+        return (--t) * t * t + 1;
+      },
+      easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+      },
+      easeInQuart(t) {
+        return t * t * t * t;
+      },
+      easeOutQuart(t) {
+        return 1 - (--t) * t * t * t;
+      },
+      easeInOutQuart(t) {
+        return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * (--t) * t * t * t;
+      },
+      easeInQuint(t) {
+        return t * t * t * t * t;
+      },
+      easeOutQuint(t) {
+        return 1 + (--t) * t * t * t * t;
+      },
+      easeInOutQuint(t) {
+        return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * (--t) * t * t * t * t;
+      }
+    };
+    // startPosition is # of px of current doc vertical scroll
+    // startTime is time marker at function call
+    const startPosition = window.pageYOffset;
+    const startTime = 'now' in window.performance ? performance.now() : new Date().getTime();
+    // doc height stores the largest of these values
+    // window height gets any of the values "or'd"
+    /*
+    const documentHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    */
+    const windowHeight = window.innerHeight ||
+      document.documentElement.clientHeight ||
+      document.getElementsByTagName('body')[0].clientHeight;
+    // destinationOffset is #of px from el to top of el parent, minus some room for aesthetics
+    const destinationOffset = destination.offsetTop - 100;
+    // destinationOffsetToScroll if the distance from the top of the document to the destination
+      // is less than the viewport height this is the difference of doc height and viewport height
+      // else this is just the travel from destination to its parent
+    const destinationOffsetToScroll = Math.round(
+      documentHeight - destinationOffset < windowHeight ? documentHeight - windowHeight : destinationOffset
+    );
+    // if requestAnimationFram isn't available (Safari) skip animation and just use window.scroll()
+    if ('requestAnimationFrame' in window === false) {
+      window.scroll(0, destinationOffsetToScroll);
+      if (callback) {
+        callback();
+      }
+      return;
+    }
+    // main scrolling function
+    function scroll (){
+      // now is cur time at each frame
+      // time gets the smaller of nums: 1 or elapsed time
+      const now = 'now' in window.performance ? performance.now() : new Date().getTime();
+      const time = Math.min(1, ((now - startTime) / duration));
+      // for testing purposes: run easing method with name matching easing param name
+      const timeFunction = easings[easing](time);
+      // incremental scroll
+      window.scroll(0, Math.ceil((timeFunction * (destinationOffsetToScroll - startPosition)) + startPosition));
+      // if we get our destination to the top of the doc than exit to callback
+      if (window.pageYOffset === destinationOffsetToScroll) {
+        if (callback){
+          callback();
+        }
+        return;
+      }
+
+      // call scroll on each successive frame
+      requestAnimationFrame(scroll);
+    }
+
+    scroll();
+
+    console.log(`
+      startPosition: ${startPosition},
+      startTime: ${startTime},
+      documentHeight: ${documentHeight},
+      windowHeight: ${windowHeight},
+      destinationOffsetToScroll: ${destinationOffsetToScroll},
+      destinationOffset: ${destinationOffset}
+    `);
+  };
+
+  viewportToResults = () => {
+    // get the destination to scroll to
+    const destinationElement = <HTMLElement> document.getElementsByClassName('resultWordsContainer')[0];
+
+    // before we call scrolling function we should check that resultWords is not empty,
+      // else return without scrolling
+      // if it has some content then we should make sure at least some .resultWord 's have been populated
+        // if we don't see the .resultWord div's in a time frame we should also return
+
+    const documentHeight = Math.max(
+      document.body.scrollHeight,
+      document.body.offsetHeight,
+      document.documentElement.clientHeight,
+      document.documentElement.scrollHeight,
+      document.documentElement.offsetHeight
+    );
+    // call scrolling function, args: destination, scroll duration, easing type, callback
+    this.scrollIt(
+      destinationElement,
+      600,
+      /*'easeOutQuad'*/ 'linear',
+      documentHeight,
+      () => console.log(`Just finished scrolling to ${window.pageYOffset}px`)
+    );
+  };
 
   toggleShowInfo = () => {
     if(!this.showInfo) {

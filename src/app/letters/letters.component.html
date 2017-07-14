@@ -2,7 +2,7 @@
   <div class="btn-container btn-container__resolveWords">
     <button id="btn__resolveWords"
             [disabled]="!userWordForm.valid"
-            (click)="resolveWords.emit()">Get Solutions</button>
+            (click)="resolveWords.emit(); viewportToResults.emit();">Get Solutions</button>
   </div>
   <div *ngIf="wordListSeed" id="letterSlotContainer">
     <div class="triangle-container triangle-container___hor">

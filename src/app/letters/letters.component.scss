@@ -25,7 +25,6 @@ $inputFontSize___mobile: 100vw / 8;
         display: flex;
         justify-content: center;
         clear: right;
-        margin-top: 10px;
         .letterSlot-control:hover{
             cursor: pointer;
         }
@@ -77,6 +76,7 @@ $inputFontSize___mobile: 100vw / 8;
 .btn-container__resolveWords{
     float: right;
     margin-right: 2%;
+    margin-bottom: 25px;
     @media screen and (max-width: 800px){
         margin-right: 11.5%;
     }
