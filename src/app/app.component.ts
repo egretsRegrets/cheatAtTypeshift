@@ -20,16 +20,10 @@ export class AppComponent implements OnInit {
   strickenLetters: string[][] = [];
 
   // real use word seed list:
-  // wordListSeed = [['a']];
-  // simple examp value wordlist: 
-  // wordListSeed = [['c','b','m'],['a'],['t','d']];
-
-  // complex examp value wordlist, few results: 
-  // wordListSeed = [['b','s','i'],['i','m'],['o','t','b','g'],['p','c','i','w'],['i','s','b','o'],['y','g','m','e']];
+  wordListSeed = [['a']];
 
   // complex examp value wordlist, more results: 
-  
-  
+  /*
   wordListSeed = [
     ['g','e','b','s'],
     ['d','n','a','r','e'],
@@ -38,18 +32,6 @@ export class AppComponent implements OnInit {
     ['l','e','a','i'],
     ['d','e','f','c','n'],
     ['d','s','o','g','y']
-  ];
-  
-  
-  // examp from TS site
-  
-  /*
-  wordListSeed = [
-    ['s','w','g'],
-    ['r','p','o'],
-    ['e','r'],
-    ['a','l','d'],
-    ['t','l','s']
   ];
   */
 
