@@ -191,8 +191,8 @@ export class AppComponent implements OnInit {
     this.scrollIt(
       destinationElement,
       600,
-      /*'easeOutQuad'*/ 'linear',
-      documentHeight,
+      /*'easeOutQuad'*/ 'easeInCubic',
+      documentHeight + 200,
       () => console.log(`Just finished scrolling to ${window.pageYOffset}px`)
     );
   };
@@ -331,6 +331,9 @@ export class AppComponent implements OnInit {
         const narrowWordList: string[] = this.masterWordList.slice(rangeStart, rangeEnd);
         const resultWordsStrings = this.linearSearch(narrowWordList);
         this.resultWords = this.resultsToCharArrays(resultWordsStrings);
+        if(this.resultWords.length) {
+          this.viewportToResults();
+        }
     };
 
     this.linearSearch = function(wordList: string[]): string[]{

@@ -17,7 +17,6 @@ export class LettersComponent {
   @Output() removeLetter = new EventEmitter();
   @Output() removeSlot = new EventEmitter();
   @Output() resolveWords = new EventEmitter();
-  @Output() viewportToResults = new EventEmitter();
 
   trackByFn = function(index: number, item: string){
     return index;
